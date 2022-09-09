@@ -1,0 +1,156 @@
+tap "aws/tap"
+tap "github/gh"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "stripe/stripe-cli"
+
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Curl like simplicity to access AWS resources
+brew "awscurl"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Core application library for C
+brew "glib"
+# Statistics utility to count lines of code
+brew "cloc"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# GNU Ubiquitous Intelligent Language for Extensions
+brew "guile"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Cleans up old and inactive forks on your GitHub account
+brew "fork-cleaner"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU awk utility
+brew "gawk"
+# Geometry Engine
+brew "geos"
+# GitHub command-line tool
+brew "gh"
+# Enable transparent encryption/decryption of files in a git repo
+brew "git-crypt"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Colorize logfiles and command output
+brew "grc"
+# Add GitHub support to git on the command-line
+brew "hub"
+# Command-line benchmarking tool
+brew "hyperfine"
+# Utility to optimize JPEG files
+brew "jpegoptim"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# YAML Parser
+brew "libyaml"
+# Development kit for the Java programming language
+brew "openjdk"
+# Java-based project management
+brew "maven"
+# Library for a binary-based efficient data interchange format
+brew "msgpack"
+# 'traceroute' and 'ping' in a single tool
+brew "mtr", link: false
+# NCurses Disk Usage
+brew "ncdu"
+# HTTP/2 C Library
+brew "nghttp2"
+# Port scanning utility for large networks
+brew "nmap"
+# Development kit for the Java programming language
+brew "openjdk@11"
+# Apache Parquet command-line tools and utilities
+brew "parquet-tools"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
+# PNG image optimizing utility
+brew "pngquant"
+# Show ps output as a tree
+brew "pstree"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# User interface to the TELNET protocol
+brew "telnet"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Vi 'workalike' with many additional features
+brew "vim"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Internet file retriever
+brew "wget"
+# Linter for YAML files
+brew "yamllint"
+# General-purpose lossless data-compression library
+brew "zlib"
+# AWS SAM CLI 🐿 is a tool for local development and testing of Serverless applications
+brew "aws/tap/aws-sam-cli"
+# Stripe CLI utility
+brew "stripe/stripe-cli/stripe"
+# Apple TV Aerial screensaver
+cask "aerial"
+# App to build and share containerized applications and microservices
+cask "font-hack"
+# Typeface made for developers
+cask "font-jetbrains-mono"
+# Web browser
+cask "google-chrome"
+# Open-source video transcoder
+cask "handbrake"
+# Free and open-source media player
+cask "iina"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
+# App to write, plan, collaborate, and get organized
+cask "notion"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Team communication and collaboration software
+cask "slack"
+# Music streaming service
+cask "spotify"
+# Application for inspecting installer packages
+cask "suspicious-package"
+# General-purpose text editor
+cask "textmate"
+# Open-source code editor
+cask "visual-studio-code"
+# Video communication and virtual meeting platform
+cask "zoom"
