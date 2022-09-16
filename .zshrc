@@ -78,6 +78,7 @@ ZSH_CUSTOM=$HOME/.config/zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  vi-mode
   aws
   git
   nvm
