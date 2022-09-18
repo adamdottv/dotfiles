@@ -1,8 +1,4 @@
-local status, null_ls = pcall(require, "null-ls")
-if not status then
-	return
-end
-
+local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
@@ -22,7 +18,12 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format({ bufnr = bufnr })
+					vim.lsp.buf.format({
+						bufnr = bufnr,
+						--[[ filter = function(c) ]]
+						--[[ 	return c.name == "null-ls" ]]
+						--[[ end, ]]
+					})
 				end,
 			})
 		end
