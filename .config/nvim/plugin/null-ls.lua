@@ -8,6 +8,7 @@ null_ls.setup({
 	sources = {
 		formatting.stylua,
 		formatting.prettierd,
+		formatting.rustfmt,
 		diagnostics.eslint_d,
 		code_actions.eslint_d,
 	},

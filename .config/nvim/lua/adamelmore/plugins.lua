@@ -55,6 +55,7 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 
 	-- Colorschemes
+	--[[ use({ "yuys13/vim", git_branch = "fix/treesitter", commit = "08c8c4bb7f579244bda592f463a4891bd8c98db7" }) ]]
 	use("dracula/vim")
 
 	-- cmp plugins
@@ -114,6 +115,16 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+
+	--[[ 	"Pocco81/auto-save.nvim", ]]
+	--[[ use({ ]]
+	--[[ 	config = function() ]]
+	--[[ 		require("auto-save").setup({ ]]
+	--[[ 			-- your config goes here ]]
+	--[[ 			-- or just leave it empty :) ]]
+	--[[ 		}) ]]
+	--[[ 	end, ]]
+	--[[ }) ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

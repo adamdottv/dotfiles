@@ -23,6 +23,7 @@ ts.setup({
 		"css",
 		"html",
 		"lua",
+		"astro",
 	},
 	ignore_install = {
 		"phpdoc",
@@ -135,9 +136,9 @@ local function update_hl(group, tbl)
 	vim.api.nvim_set_hl(0, group, new_hl)
 end
 
-update_hl("TSComment", { italic = true })
-update_hl("TSConstant", { italic = true })
-update_hl("TSKeyword", { italic = true })
+update_hl("Comment", { italic = true })
+update_hl("Constant", { italic = true })
+update_hl("Keyword", { italic = true })
 -- update_hl("Keyword", { italic = true })
 
 local status2, tscontext = pcall(require, "treesitter-context")

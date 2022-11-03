@@ -72,10 +72,11 @@ alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty 
+
+cmd + shift - return : yabai -m config --space $(yabai -m query --spaces --space|\jq -r .index) layout $(yabai -m query --spaces --space |jq -r 'if .type|contains("float") then "bsp" else "float" end')
 
 .blacklist [
-    "firefox"
     "slack"
     "discord"
 ]
