@@ -49,13 +49,11 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
-	use("akinsho/toggleterm.nvim")
 	use("ahmedkhalf/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("goolord/alpha-nvim")
 
 	-- Colorschemes
-	--[[ use({ "yuys13/vim", git_branch = "fix/treesitter", commit = "08c8c4bb7f579244bda592f463a4891bd8c98db7" }) ]]
 	use("dracula/vim")
 
 	-- cmp plugins
@@ -87,7 +85,7 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-ui-select.nvim")
 
 	-- Treesitter
-	use("nvim-treesitter/nvim-treesitter")
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/playground")
@@ -105,9 +103,6 @@ return packer.startup(function(use)
 	-- Cloak (by laytanl_)
 	use("laytan/cloak.nvim")
 
-	-- Which-Key
-	use("folke/which-key.nvim")
-
 	-- Markdown preview
 	use({
 		"iamcco/markdown-preview.nvim",
@@ -116,14 +111,34 @@ return packer.startup(function(use)
 		end,
 	})
 
-	--[[ 	"Pocco81/auto-save.nvim", ]]
+	-- Packer
 	--[[ use({ ]]
+	--[[ 	"folke/noice.nvim", ]]
 	--[[ 	config = function() ]]
-	--[[ 		require("auto-save").setup({ ]]
-	--[[ 			-- your config goes here ]]
-	--[[ 			-- or just leave it empty :) ]]
+	--[[ 		require("noice").setup({ ]]
+	--[[ 			-- add any options here ]]
+	--[[ 			lsp = { ]]
+	--[[ 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter** ]]
+	--[[ 				override = { ]]
+	--[[ 					["vim.lsp.util.convert_input_to_markdown_lines"] = true, ]]
+	--[[ 					["vim.lsp.util.stylize_markdown"] = true, ]]
+	--[[ 					["cmp.entry.get_documentation"] = true, ]]
+	--[[ 				}, ]]
+	--[[ 			}, ]]
+	--[[ 			-- you can enable a preset for easier configuration ]]
+	--[[ 			presets = { ]]
+	--[[ 				bottom_search = true, -- use a classic bottom cmdline for search ]]
+	--[[ 				command_palette = true, -- position the cmdline and popupmenu together ]]
+	--[[ 				long_message_to_split = true, -- long messages will be sent to a split ]]
+	--[[ 				inc_rename = false, -- enables an input dialog for inc-rename.nvim ]]
+	--[[ 				lsp_doc_border = false, -- add a border to hover docs and signature help ]]
+	--[[ 			}, ]]
 	--[[ 		}) ]]
 	--[[ 	end, ]]
+	--[[ 	requires = { ]]
+	--[[ 		"MunifTanjim/nui.nvim", ]]
+	--[[ 		"rcarriga/nvim-notify", ]]
+	--[[ 	}, ]]
 	--[[ }) ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim

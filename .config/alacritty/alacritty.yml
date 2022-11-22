@@ -4,10 +4,10 @@ env:
   TERM: screen-256color
 window:
   padding:
-    x: 5
-    y: 5
+    x: 10
+    y: 8
   decorations: none
-  opacity: 0.8
+  opacity: 0.7
 selection:
   save_to_clipboard: true
 font:

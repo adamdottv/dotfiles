@@ -24,6 +24,7 @@ ts.setup({
 		"html",
 		"lua",
 		"astro",
+		"typescript",
 	},
 	ignore_install = {
 		"phpdoc",
