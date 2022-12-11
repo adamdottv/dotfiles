@@ -94,8 +94,7 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 
 	-- GitHub Copilot
-	-- use({ "zbirenbaum/copilot.lua", commit = "08230e4d9be4807b60543265fae4f34e32ae1555" })
-	-- use({ "zbirenbaum/copilot-cmp", commit = "e93c7c8eab2e98c0fe34619cfb7487d13fb756a4" })
+	use("github/copilot.vim")
 
 	-- Surround
 	use("kylechui/nvim-surround")

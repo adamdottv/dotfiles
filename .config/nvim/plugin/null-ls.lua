@@ -10,6 +10,8 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.prettierd.with({ extra_filetypes = { "astro" } }),
 		formatting.rustfmt,
+		formatting.black,
+		formatting.isort,
 		--[[ diagnostics.eslint_d, ]]
 		--[[ code_actions.eslint_d, ]]
 	},

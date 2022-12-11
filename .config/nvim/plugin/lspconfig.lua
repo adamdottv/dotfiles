@@ -76,11 +76,17 @@ nvim_lsp.flow.setup({
 	capabilities = capabilities,
 })
 
+nvim_lsp.denols.setup({
+	on_attach = on_attach,
+	root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+})
+
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	-- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
+	root_dir = nvim_lsp.util.root_pattern("package.json"),
 })
 
 nvim_lsp.sourcekit.setup({
@@ -115,6 +121,13 @@ nvim_lsp.astro.setup({
 })
 nvim_lsp.graphql.setup({})
 nvim_lsp.rust_analyzer.setup({
+	on_attach = on_attach,
+})
+
+nvim_lsp.pyright.setup({
+	on_attach = on_attach,
+})
+nvim_lsp.jedi_language_server.setup({
 	on_attach = on_attach,
 })
 
