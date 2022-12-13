@@ -1,4 +1,0 @@
-- [x] add textobjects
-- [ ] add markdown lsp
-- [ ] add json lsp
-- [ ] add graphql lsp

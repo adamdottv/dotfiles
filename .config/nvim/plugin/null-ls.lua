@@ -1,7 +1,7 @@
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
---[[ local diagnostics = null_ls.builtins.diagnostics ]]
---[[ local code_actions = null_ls.builtins.code_actions ]]
+local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
 local augroup = vim.api.nvim_create_augroup("Format", { clear = true })
 
 null_ls.setup({
@@ -12,8 +12,8 @@ null_ls.setup({
 		formatting.rustfmt,
 		formatting.black,
 		formatting.isort,
-		--[[ diagnostics.eslint_d, ]]
-		--[[ code_actions.eslint_d, ]]
+		diagnostics.eslint_d,
+		code_actions.eslint_d,
 	},
 	on_attach = function(client, bufnr)
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -22,12 +22,7 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format({
-						bufnr = bufnr,
-						--[[ filter = function(c) ]]
-						--[[ 	return c.name == "null-ls" ]]
-						--[[ end, ]]
-					})
+					vim.lsp.buf.format({ bufnr = bufnr })
 				end,
 			})
 		end

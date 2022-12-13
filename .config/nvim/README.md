@@ -2,13 +2,13 @@
 
 > Why does this repo exist?
 
-This config attempts to provide a rock solid fully featured starting point for someone new to Neovim, or just tired of maintaining the basic IDE components of their config. 
+This config attempts to provide a rock solid fully featured starting point for someone new to Neovim, or just tired of maintaining the basic IDE components of their config.
 
 > What makes it "rock solid"?
 
 All of the included plugins are pinned to a version that ensures they are compatible and will not update potentially introducing errors into your config. For every Neovim release I will update this repo along with the community to keep it up to date with the newest versions.
 
-As I mentioned, this config is meant as a starting point for people new to Neovim who want a familiar IDE experience. The config has a very simple structure that makes it easy to add new plugins. 
+As I mentioned, this config is meant as a starting point for people new to Neovim who want a familiar IDE experience. The config has a very simple structure that makes it easy to add new plugins.
 
 ## Install Neovim 0.7
 
@@ -32,9 +32,9 @@ Make sure to remove or move your current `nvim` directory
 git clone https://github.com/LunarVim/nvim-basic-ide.git ~/.config/nvim
 ```
 
-Run `nvim` and wait for the plugins to be installed 
+Run `nvim` and wait for the plugins to be installed
 
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim) 
+**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim)
 
 **NOTE** Checkout this file for some predefined keymaps: [keymaps](https://github.com/LunarVim/nvim-basic-ide/blob/master/lua/user/keymaps.lua)
 
@@ -75,13 +75,14 @@ Next we need to install python support (node is optional)
   npm i -g neovim
   ```
 
-We will also need `ripgrep` for Telescope to work: 
+We will also need `ripgrep` for Telescope to work:
 
 - Ripgrep
 
   ```sh
   sudo apt install ripgrep
   ```
+
 ---
 
 **NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
@@ -132,7 +133,6 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [vim-bbye](https://github.com/moll/vim-bbye)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 - [project.nvim](https://github.com/ahmedkhalf/project.nvim)
 - [impatient.nvim](https://github.com/lewis6991/impatient.nvim)
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
@@ -160,6 +160,6 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 
 ---
 
-> The computing scientist's main challenge is not to get confused by the complexities of his own making. 
+> The computing scientist's main challenge is not to get confused by the complexities of his own making.
 
 \- Edsger W. Dijkstra

@@ -74,7 +74,6 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-	-- use("glepnir/lspsaga.nvim")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -88,10 +87,6 @@ return packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/nvim-treesitter-context")
-	use("nvim-treesitter/playground")
-
-	-- Git
-	use("lewis6991/gitsigns.nvim")
 
 	-- GitHub Copilot
 	use("github/copilot.vim")
@@ -109,36 +104,6 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
-
-	-- Packer
-	--[[ use({ ]]
-	--[[ 	"folke/noice.nvim", ]]
-	--[[ 	config = function() ]]
-	--[[ 		require("noice").setup({ ]]
-	--[[ 			-- add any options here ]]
-	--[[ 			lsp = { ]]
-	--[[ 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter** ]]
-	--[[ 				override = { ]]
-	--[[ 					["vim.lsp.util.convert_input_to_markdown_lines"] = true, ]]
-	--[[ 					["vim.lsp.util.stylize_markdown"] = true, ]]
-	--[[ 					["cmp.entry.get_documentation"] = true, ]]
-	--[[ 				}, ]]
-	--[[ 			}, ]]
-	--[[ 			-- you can enable a preset for easier configuration ]]
-	--[[ 			presets = { ]]
-	--[[ 				bottom_search = true, -- use a classic bottom cmdline for search ]]
-	--[[ 				command_palette = true, -- position the cmdline and popupmenu together ]]
-	--[[ 				long_message_to_split = true, -- long messages will be sent to a split ]]
-	--[[ 				inc_rename = false, -- enables an input dialog for inc-rename.nvim ]]
-	--[[ 				lsp_doc_border = false, -- add a border to hover docs and signature help ]]
-	--[[ 			}, ]]
-	--[[ 		}) ]]
-	--[[ 	end, ]]
-	--[[ 	requires = { ]]
-	--[[ 		"MunifTanjim/nui.nvim", ]]
-	--[[ 		"rcarriga/nvim-notify", ]]
-	--[[ 	}, ]]
-	--[[ }) ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

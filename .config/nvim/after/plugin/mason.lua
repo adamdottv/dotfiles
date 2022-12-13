@@ -10,5 +10,10 @@ end
 mason.setup({})
 
 lspconfig.setup({
-	ensure_installed = { "sumneko_lua", "tailwindcss", "astro" },
+	ensure_installed = {
+		"sumneko_lua",
+		"tailwindcss",
+		"tsserver",
+		"astro",
+	},
 })
