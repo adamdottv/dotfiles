@@ -43,7 +43,6 @@ vim.opt.shell = "/bin/zsh"
 vim.opt.relativenumber = true
 vim.opt.confirm = true
 vim.opt.foldenable = false
-vim.g.copilot_assume_mapped = true
 
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {

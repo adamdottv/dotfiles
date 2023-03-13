@@ -56,24 +56,32 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use("dracula/vim")
 
-	-- cmp plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
-
-	-- snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-
 	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-	use("RRethy/vim-illuminate")
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+		},
+	})
+
+	-- Formatter
+	use({ "mhartington/formatter.nvim" })
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -89,13 +97,23 @@ return packer.startup(function(use)
 	use("nvim-treesitter/nvim-treesitter-context")
 
 	-- GitHub Copilot
-	use("github/copilot.vim")
+	use({ "zbirenbaum/copilot.lua" })
+	-- use({
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	after = { "copilot.lua" },
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- })
 
 	-- Surround
 	use("kylechui/nvim-surround")
 
 	-- Cloak (by laytanl_)
 	use("laytan/cloak.nvim")
+
+	-- Harpoon (by ThePrimeagen)
+	use("ThePrimeagen/harpoon")
 
 	-- Markdown preview
 	use({

@@ -126,3 +126,7 @@ export PATH="$PNPM_HOME:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+export "ANDROID_HOME=$HOME/Library/Android/sdk"
+export "ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk"
+export "ANDROID_AVD_HOME=${HOME}/.Android/avd"
