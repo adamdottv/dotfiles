@@ -95,16 +95,17 @@ return packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/nvim-treesitter-context")
+	use("virchau13/tree-sitter-astro")
 
 	-- GitHub Copilot
 	use({ "zbirenbaum/copilot.lua" })
-	-- use({
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	after = { "copilot.lua" },
-	-- 	config = function()
-	-- 		require("copilot_cmp").setup()
-	-- 	end,
-	-- })
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	})
 
 	-- Surround
 	use("kylechui/nvim-surround")

@@ -14,6 +14,7 @@ ts.setup({
 		"astro",
 		"tsx",
 		"typescript",
+		"elixir",
 	},
 	highlight = { enable = true },
 	indent = { enable = true },

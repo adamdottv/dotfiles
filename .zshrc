@@ -78,10 +78,10 @@ ZSH_CUSTOM=$HOME/.config/zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  nvm
   vi-mode
   aws
   git
-  nvm
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
@@ -130,3 +130,6 @@ fi
 export "ANDROID_HOME=$HOME/Library/Android/sdk"
 export "ANDROID_SDK_ROOT=${HOME}/Library/Android/sdk"
 export "ANDROID_AVD_HOME=${HOME}/.Android/avd"
+
+eval "$(direnv hook bash)"
+# source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
