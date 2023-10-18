@@ -5,6 +5,7 @@ lsp.ensure_installed({
 	"tsserver",
 	"gopls",
 	"astro",
+  "svelte"
 })
 
 lsp.set_preferences({

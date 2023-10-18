@@ -35,6 +35,7 @@ require("formatter").setup({
 		json = formatter_prettier,
 		graphql = formatter_prettier,
 		astro = formatter_prettier,
+    svelte = formatter_prettier,
     rust = {rustfmt},
 	},
 })
@@ -43,7 +44,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.astro,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql,*.rs FormatWrite
+autocmd BufWritePost *.astro,*.svelte,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql,*.rs FormatWrite
 augroup END
 ]],
 	true
