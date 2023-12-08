@@ -43,12 +43,13 @@ lctrl + alt - e : yabai -m space --balance
 lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # Rotate windows clockwise and anticlockwise
-alt - r         : yabai -m space --rotate 270
+# alt - r         : yabai -m space --rotate 270
 shift + alt - r : yabai -m space --rotate 90
 
 # Rotate on X and Y Axis
 shift + alt - x : yabai -m space --mirror x-axis
 shift + alt - y : yabai -m space --mirror y-axis
+alt -r : yabai -m window --swap next 
 
 # Set insertion point for focused container
 shift + lctrl + alt - h : yabai -m window --insert west
@@ -71,8 +72,8 @@ shift + lctrl + alt - r : \
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
-# open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty 
+# open ghostty, blazingly fast compared to iTerm/Hyper
+cmd - return : open -a Ghostty.app
 
 cmd + shift - return : yabai -m config --space $(yabai -m query --spaces --space|\jq -r .index) layout $(yabai -m query --spaces --space |jq -r 'if .type|contains("float") then "bsp" else "float" end')
 
