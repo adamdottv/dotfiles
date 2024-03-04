@@ -65,6 +65,9 @@ keymap("n", "<leader>w", "<cmd>:w<CR>", opts)
 -- Close Quickfix-List
 keymap("n", "<leader>cc", "<cmd>:ccl<CR>", opts)
 
+-- Restart LSP
+keymap("n", "<leader>r", ":LspRestart<CR>", opts)
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>", opts)
