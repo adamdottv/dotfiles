@@ -54,7 +54,7 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 
 	-- Colorschemes
-	use("dracula/vim")
+  use("Mofiqul/dracula.nvim")
 
 	-- LSP
 	use({

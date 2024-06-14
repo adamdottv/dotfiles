@@ -1,23 +1,26 @@
-theme = Dracula
+theme = Dracula+
  
 confirm-close-surface = false
 # mouse-hide-while-typing = true
 
-# window-theme = "dark"
-# window-decoration = false
 window-padding-x = 0
 window-padding-y = 0
+# macos-titlebar-tabs = true
+# window-theme = "dark"
+# window-decoration = false
 # macos-non-native-fullscreen = visible-menu
-macos-titlebar-tabs = true
 # background-opacity = 0.95
 
 clipboard-read = "allow"
 clipboard-paste-protection = false
 
-# font-family	= "Operator Mono SSm Lig"
-font-family = "GTMaruMono Nerd Font"
+font-family = "Victor Mono"
+font-family-bold = "Monaspace Neon Var"
+font-family-italic = "Operator Mono SSm Lig"
+font-family-bold-italic = "Operator Mono SSm Lig"
 font-size = 18
-font-variation = wght=300
+font-thicken = true
+# font-variation = wght=300
 
 font-feature = ss01
 font-feature = ss02
@@ -32,5 +35,5 @@ font-feature = dlig
 font-feature = calt
 
 adjust-cell-width = 0
-adjust-cell-height = 0
+adjust-cell-height = 20%
 

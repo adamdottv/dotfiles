@@ -15,6 +15,7 @@ ts.setup({
 		"tsx",
 		"typescript",
 		"elixir",
+    "go"
 	},
 	highlight = { enable = true },
 	indent = { enable = true },
@@ -86,11 +87,7 @@ ts.setup({
 				["<leader>dF"] = "@class.outer",
 			},
 		},
-	},
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
+	}
 })
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -102,17 +99,6 @@ parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = "indent"
 vim.opt.foldenable = true
-
--- Highlight
-local function update_hl(group, tbl)
-	local old_hl = vim.api.nvim_get_hl_by_name(group, true)
-	local new_hl = vim.tbl_extend("force", old_hl, tbl)
-	vim.api.nvim_set_hl(0, group, new_hl)
-end
-
-update_hl("Comment", { italic = true })
-update_hl("Constant", { italic = true })
-update_hl("Keyword", { italic = true })
 
 local status2, tscontext = pcall(require, "treesitter-context")
 if not status2 then
