@@ -1,14 +1,14 @@
 theme = Dracula+
  
 confirm-close-surface = false
-# mouse-hide-while-typing = true
+mouse-hide-while-typing = true
 
 window-padding-x = 0
-window-padding-y = 0
-# macos-titlebar-tabs = true
-# window-theme = "dark"
-# window-decoration = false
+window-padding-y = 1
+macos-window-shadow = false
 # macos-non-native-fullscreen = visible-menu
+# window-decoration = false
+# window-theme = "dark"
 # background-opacity = 0.95
 
 clipboard-read = "allow"

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+create_initial_window() {
+    local session_name=$1
+    local window_name=$2
+    local directory=$3
+    
+    # Create the new window and run nvim in the initial pane
+    tmux new-window -t $session_name -n $window_name -c $directory
+    tmux send-keys -t $session_name:$window_name 'nvim .' C-m
+}
+
+setup_project_panes() {
+    local session_name=$1
+    local directory=$2
+    local window_name=$(basename "$directory" | tr . -)
+
+    # Create the initial window
+    create_initial_window $session_name $window_name $directory
+
+    # Source the .tmux file if it exists
+    if [[ -f "$directory/.tmux" ]]; then
+        tmux source-file "$directory/.tmux"
+    else
+      # Split the left pane horizontally to create the right pane
+      tmux split-window -h -c $directory 
+      tmux split-window -v -c $directory 
+      tmux select-pane -t 2
+    fi
+}
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/code -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+session_name="tmux"
+selected_name=$(basename "$selected" | tr . -)
+tmux_running=$(pgrep tmux)
+
+# Check if tmux is running and create session with window if necessary
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -ds $session_name
+    setup_project_panes $session_name $selected
+    tmux attach-session -t $session_name
+    exit 0
+fi
+
+# Ensure the session exists
+if ! tmux has-session -t $session_name 2>/dev/null; then
+    tmux new-session -ds $session_name
+fi
+
+# Check if the window already exists and select it if it does
+if tmux list-windows -t $session_name | grep -q "$selected_name"; then
+    tmux select-window -t $session_name:$selected_name
+else
+    # Create the new window or run the .tmux script
+    setup_project_panes $session_name $selected
+fi
+
+# Attach to the tmux session if not already inside tmux
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t $session_name
+fi
+

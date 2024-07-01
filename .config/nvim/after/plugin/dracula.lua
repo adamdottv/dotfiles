@@ -1,6 +1,8 @@
 local dracula = require("dracula")
 local colors = {
   bg = "#22212C",
+  bg_light = "#2E2B3B",
+  bg_lighter = "#393649",
   fg = "#F8F8F2",
   selection = "#454158",
   comment = "#7970A9",
@@ -28,7 +30,7 @@ dracula.setup({
   -- customize dracula color palette
   colors = colors,
   -- show the '~' characters after the end of buffers
-  show_end_of_buffer = true, -- default false
+  show_end_of_buffer = false, -- default false
   -- use transparent background
   transparent_bg = true, -- default false
   -- set custom lualine background color
@@ -37,10 +39,7 @@ dracula.setup({
   italic_comment = true, -- default false
   -- overrides the default highlights see `:h synIDattr`
   overrides = {
-    -- Examples
-    -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
-    -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-    -- Nothing = {} -- clear highlight of Nothing
+    -- https://github.com/Mofiqul/dracula.nvim/blob/main/lua/dracula/groups.lua
     Comment = { fg = colors.comment, italic = true },
     Constant = { fg = colors.yellow, italic = true },
     Keyword = { fg = colors.cyan, italic = true },
@@ -55,6 +54,17 @@ dracula.setup({
     ['@type'] = { fg = colors.bright_cyan, italic = true },
     ['@number'] = { fg = colors.purple, italic = true },
     ['@lsp.type.parameter'] = { fg = colors.orange, italic = true },
+    NvimTreeNormal = { fg = colors.fg, bg = colors.bg_light, },
+    -- CmpItemAbbr = { fg = colors.white, bg = colors.bg_light },
+    -- CmpItemKind = { fg = colors.white, bg = colors.bg_light },
+    NormalFloat = { fg = colors.fg, bg = colors.bg_light, },
+    TelescopeNormal = { fg = colors.fg, bg = colors.bg_light, },
+    TelescopePromptBorder = { fg = colors.cyan, },
+    TelescopeResultsBorder = { fg = colors.cyan, },
+    TelescopePreviewBorder = { fg = colors.cyan, },
+    FloatBorder = { fg = colors.cyan, },
+    VertSplit = { fg = colors.cyan, },
+    WinSeparator = { fg = colors.cyan, },
   },
 })
 

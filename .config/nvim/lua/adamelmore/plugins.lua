@@ -116,6 +116,20 @@ return packer.startup(function(use)
 	-- Harpoon (by ThePrimeagen)
 	use("ThePrimeagen/harpoon")
 
+  use { "ggandor/leap.nvim" }
+  -- use({
+  --     "robitx/gp.nvim",
+  --     config = function()
+  --         local config = {
+  --            openai_api_key = os.getenv("OPENAI_API_KEY")
+  --         }
+  --         require("gp").setup(config)
+  --     end,
+  -- })
+  -- use { "tpope/vim-fugitive" }
+  -- use { "mbbill/undotree" }
+  -- use { "dmmulroy/tsc.nvim" }
+
 	-- Markdown preview
 	use({
 		"iamcco/markdown-preview.nvim",

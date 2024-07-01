@@ -39,7 +39,8 @@ require("formatter").setup({
     svelte = formatter_prettier,
     html = formatter_prettier,
     css = formatter_prettier,
-    rust = {rustfmt},
+    rust = {require("formatter.filetypes.rust").rustfmt},
+    go = {require("formatter.filetypes.go").golines}
 	},
 })
 
@@ -47,10 +48,10 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.astro,*.svelte,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql,*.html,*.css,*.svg,*.rs FormatWrite
+autocmd BufWritePost *.astro,*.svelte,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql,*.html,*.css,*.svg,*.rs,*.go FormatWrite
 augroup END
 ]],
 	true
 )
 
-vim.api.nvim_command("autocmd BufWritePre *.ex,*.go lua vim.lsp.buf.format()")
+vim.api.nvim_command("autocmd BufWritePre *.ex lua vim.lsp.buf.format()")
