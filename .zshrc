@@ -46,3 +46,6 @@ export PATH=/Users/adam/.sst/bin:$PATH
 alias air='~/go/bin/air'
 
 alias ☕='ssh terminal.shop'
+
+# bun completions
+[ -s "/Users/adam/.bun/_bun" ] && source "/Users/adam/.bun/_bun"

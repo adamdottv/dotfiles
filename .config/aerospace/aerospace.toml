@@ -22,7 +22,7 @@ default-root-container-orientation = 'auto'
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 10
+accordion-padding = 30
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
