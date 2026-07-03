@@ -1,0 +1,139 @@
+#!/bin/bash
+
+# Sync dotfiles from Mac Studio to MacBook
+# Usage: sync-dotfiles [mac-studio-ip]
+
+set -e
+
+# Configuration
+MAC_STUDIO_IP="${1:-}"
+MAC_STUDIO_USER="adam"  # Change this if your username is different on Mac Studio
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Function to print colored output
+print_status() {
+    echo -e "${GREEN}[SYNC]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+# Check if IP address is provided
+if [ -z "$MAC_STUDIO_IP" ]; then
+    print_error "Please provide your Mac Studio's IP address"
+    echo "Usage: $0 <mac-studio-ip>"
+    echo "Example: $0 192.168.1.100"
+    exit 1
+fi
+
+# Test SSH connection
+print_status "Testing connection to Mac Studio at $MAC_STUDIO_IP..."
+if ! ssh -o ConnectTimeout=5 "${MAC_STUDIO_USER}@${MAC_STUDIO_IP}" "echo 'Connection successful'" 2>/dev/null; then
+    print_error "Failed to connect to Mac Studio. Please check:"
+    echo "  - Mac Studio is on and connected to the network"
+    echo "  - IP address is correct: $MAC_STUDIO_IP"
+    echo "  - SSH is enabled on Mac Studio (System Preferences > Sharing > Remote Login)"
+    echo "  - Username is correct: $MAC_STUDIO_USER"
+    exit 1
+fi
+
+print_status "Connection successful!"
+
+# Create backup directory
+BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BACKUP_DIR"
+print_status "Created backup directory: $BACKUP_DIR"
+
+# Function to sync a file or directory
+sync_item() {
+    local source="$1"
+    local dest="$2"
+    local item_name="$3"
+
+    print_status "Syncing $item_name..."
+
+    # Create backup if destination exists
+    if [ -e "$dest" ]; then
+        print_status "Backing up existing $item_name..."
+        # Use rsync for backup to handle special files properly
+        rsync -a --exclude='*.sock' --exclude='*.pid' "$dest" "$BACKUP_DIR/" 2>/dev/null || {
+            print_warning "Partial backup of $item_name (some special files skipped)"
+        }
+    fi
+
+    # Sync from Mac Studio
+    print_status "Syncing: ${source} -> ${dest}"
+
+    # Use scp for individual files, rsync for directories
+    if [[ "$source" != */ ]]; then
+        # It's a file - use scp which is simpler for single files
+        scp "${MAC_STUDIO_USER}@${MAC_STUDIO_IP}:${source}" "$dest" || {
+            print_warning "Failed to sync $item_name (might not exist on Mac Studio)"
+            return 1
+        }
+    else
+        # It's a directory - use rsync (without --delete to preserve other configs)
+        rsync -avz --progress \
+            "${MAC_STUDIO_USER}@${MAC_STUDIO_IP}:${source}" \
+            "$dest" || {
+            print_warning "Failed to sync $item_name (might not exist on Mac Studio)"
+            return 1
+        }
+    fi
+
+    print_status "Successfully synced $item_name"
+    return 0
+}
+
+# Sync dotfiles
+echo ""
+print_status "Starting dotfiles sync..."
+echo ""
+
+# Zsh configuration
+sync_item ".zshrc" "$HOME/.zshrc" "Zsh configuration"
+sync_item ".zprofile" "$HOME/.zprofile" "Zsh profile" || true
+sync_item ".zshenv" "$HOME/.zshenv" "Zsh environment" || true
+
+# Ghostty configuration
+sync_item ".config/ghostty/" "$HOME/.config/ghostty/" "Ghostty configuration"
+
+# Tmux configuration
+sync_item ".tmux.conf" "$HOME/.tmux.conf" "Tmux configuration"
+sync_item ".tmux/" "$HOME/.tmux/" "Tmux directory" || true
+
+# Neovim configuration
+sync_item ".config/nvim/" "$HOME/.config/nvim/" "Neovim configuration"
+
+# Scripts directory
+print_status "Syncing scripts directory..."
+rsync -avz --progress \
+    "${MAC_STUDIO_USER}@${MAC_STUDIO_IP}:~/bin/.local/scripts/" \
+    "$HOME/bin/.local/scripts/" 2>/dev/null || {
+    print_warning "Failed to sync scripts directory"
+}
+
+# Make all scripts executable
+if [ -d "$HOME/bin/.local/scripts" ]; then
+    chmod +x "$HOME/bin/.local/scripts"/*
+    print_status "Made all scripts executable"
+fi
+
+echo ""
+print_status "Sync completed!"
+print_status "Backup saved to: $BACKUP_DIR"
+echo ""
+print_warning "Remember to:"
+echo "  - Source your shell configuration: source ~/.zshrc"
+echo "  - Restart terminal applications to load new configurations"
+echo "  - Check that all configurations are working as expected"

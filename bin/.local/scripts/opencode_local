@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bun run --conditions=dev ~/code/opencode/packages/opencode/src/index.ts "$@"

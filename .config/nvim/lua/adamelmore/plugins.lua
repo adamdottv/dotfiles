@@ -56,6 +56,27 @@ return packer.startup(function(use)
 	-- Colorschemes
   use("Mofiqul/dracula.nvim")
 
+  use {
+  "supermaven-inc/supermaven-nvim",
+  config = function()
+    require("supermaven-nvim").setup({
+      keymaps = {
+        accept_suggestion = "<Tab>",
+        clear_suggestion = "<C-]>",
+        accept_word = "<C-j>",
+      },
+      -- ignore_filetypes = { cpp = true },
+      -- color = {
+      --   suggestion_color = "#ffffff",
+      --   cterm = 244,
+      -- },
+      -- log_level = "info", -- set to "off" to disable logging completely
+      disable_inline_completion = true, -- disables inline completion for use with cmp
+      disable_keymaps = false -- disables built in keymaps for more manual control
+    })
+  end,
+}
+
 	-- LSP
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -117,17 +138,23 @@ return packer.startup(function(use)
 	use("ThePrimeagen/harpoon")
 
   use { "ggandor/leap.nvim" }
-  -- use({
-  --     "robitx/gp.nvim",
-  --     config = function()
-  --         local config = {
-  --            openai_api_key = os.getenv("OPENAI_API_KEY")
-  --         }
-  --         require("gp").setup(config)
-  --     end,
-  -- })
-  -- use { "tpope/vim-fugitive" }
-  -- use { "mbbill/undotree" }
+  use({
+      "robitx/gp.nvim",
+      config = function()
+        local config = {
+           openai_api_key = os.getenv("OPENAI_API_KEY"),
+            providers = {
+              anthropic = {
+                disable = false,
+                endpoint = "https://api.anthropic.com/v1/messages",
+                secret = os.getenv("ANTHROPIC_API_KEY"),
+              },
+            }}
+          require("gp").setup(config)
+      end,
+  })
+  use { "tpope/vim-fugitive" }
+  use { "mbbill/undotree" }
   -- use { "dmmulroy/tsc.nvim" }
 
 	-- Markdown preview

@@ -2,7 +2,7 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-	"tsserver",
+  "vtsls",
 	"gopls",
 	"astro",
   "svelte"
@@ -26,11 +26,12 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
 	sources = {
+    { name = "supermaven" },
 		{ name = "path" },
 		{ name = "nvim_lsp", keyword_length = 1 },
-		-- { name = "buffer", keyword_length = 3 },
 		{ name = "luasnip", keyword_length = 2 },
-		{ name = "copilot" },
+		-- { name = "buffer", keyword_length = 3 },
+		-- { name = "copilot" },
 	},
 })
 
@@ -69,7 +70,7 @@ lsp.on_attach(function(client, bufnr)
 	end, opts)
 end)
 
-lsp.configure("tsserver", {
+lsp.configure("vtsls", {
 	root_dir = require("lspconfig").util.root_pattern(
 		"yarn.lock",
 		".git",

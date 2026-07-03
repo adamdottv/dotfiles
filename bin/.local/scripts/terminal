@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: terminal <branch>"
+    exit 1
+fi
+
+branch=$1
+session_name="terminal"
+window_name=$branch
+base_dir="$HOME/minions/terminal"
+dev_dir="$base_dir/dev"
+branch_dir="$base_dir/$branch"
+
+# Function to set up a new TMUX window with proper environment
+setup_window() {
+    # Create the session if it doesn't exist
+    if ! tmux has-session -t $session_name 2>/dev/null; then
+        tmux new-session -ds $session_name
+    fi
+
+    # Switch to the terminal session if we're in tmux
+    if [[ ! -z $TMUX ]]; then
+        tmux switch-client -t $session_name
+    fi
+
+    # Create a new window and start in dev directory
+    tmux new-window -t $session_name: -n $window_name -c $dev_dir
+
+    # Run git worktree add
+    tmux send-keys -t $session_name:$window_name "git worktree add ../$branch" C-m
+    sleep 3  # Allow git worktree to complete
+
+    # Change to the branch directory
+    tmux send-keys -t $session_name:$window_name "cd $branch_dir" C-m
+    tmux send-keys -t $session_name:$window_name "cp ~/code/terminal/.env ./.env" C-m
+    tmux send-keys -t $session_name:$window_name "clear" C-m
+    sleep 1
+
+    # Split the window horizontally (creating a right pane)
+    tmux split-window -h -t $session_name:$window_name -c $branch_dir
+
+    # Make sure we're in the correct directory for both panes
+    sleep 1
+
+    # LEFT pane: Set AWS profile and open claude
+    tmux send-keys -t $session_name:$window_name.1 "export AWS_PROFILE=terminal-dev" C-m
+    tmux send-keys -t $session_name:$window_name.1 "cd $branch_dir" C-m
+    sleep 1
+    tmux send-keys -t $session_name:$window_name.1 "claude" C-m
+    sleep 3
+
+    # RIGHT pane: Set AWS profile and open nvim
+    tmux send-keys -t $session_name:$window_name.2 "export AWS_PROFILE=terminal-dev" C-m
+    tmux send-keys -t $session_name:$window_name.2 "cd $branch_dir" C-m
+    sleep 1
+    tmux send-keys -t $session_name:$window_name.2 "nvim ." C-m
+    sleep 1
+
+    # Return focus to the left pane
+    tmux select-pane -t $session_name:$window_name.1
+}
+
+# First check if we're already in a TMUX session
+if [[ -z $TMUX ]]; then
+    # Not in a tmux session, run setup and then attach
+    setup_window
+    tmux attach-session -t $session_name:$window_name
+else
+    # Already in a tmux session, just run setup
+    setup_window
+fi

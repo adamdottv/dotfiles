@@ -1,5 +1,10 @@
-theme = Dracula+
- 
+# theme = Nord
+# theme = Tomorrow
+# theme = Aurora
+# theme = Builtin Light
+# theme = Seti
+# theme = TokyoNight
+
 confirm-close-surface = false
 mouse-hide-while-typing = true
 
@@ -14,26 +19,49 @@ macos-window-shadow = false
 clipboard-read = "allow"
 clipboard-paste-protection = false
 
-font-family = "Victor Mono"
-font-family-bold = "Monaspace Neon Var"
-font-family-italic = "Operator Mono SSm Lig"
-font-family-bold-italic = "Operator Mono SSm Lig"
-font-size = 18
-font-thicken = true
+font-family = "TX-02"
+# font-family = "Victor Mono"
+# font-family-bold = "Monaspace Neon Var"
+# font-family-italic = "Operator Mono SSm Lig"
+# font-family-bold-italic = "Operator Mono SSm Lig"
+# font-size = 18
+# font-thicken = true
 # font-variation = wght=300
 
-font-feature = ss01
-font-feature = ss02
-font-feature = ss03
-font-feature = ss04
-font-feature = ss05
-font-feature = ss06
-font-feature = ss07
-font-feature = ss08
-font-feature = liga
-font-feature = dlig
-font-feature = calt
+# font-feature = ss01
+# font-feature = ss02
+# font-feature = ss03
+# font-feature = ss04
+# font-feature = ss05
+# font-feature = ss06
+# font-feature = ss07
+# font-feature = ss08
+# font-feature = liga
+# font-feature = dlig
+# font-feature = calt
 
-adjust-cell-width = 0
-adjust-cell-height = 20%
+# adjust-cell-width = 0
+# adjust-cell-height = 20%
 
+# palette = 0=#51576d
+# palette = 1=#e78284
+# palette = 2=#a6d189
+# palette = 3=#e5c890
+# palette = 4=#8caaee
+# palette = 5=#f4b8e4
+# palette = 6=#ff0000
+# palette = 7=#a5adce
+# palette = 8=#626880
+# palette = 9=#e67172
+# palette = 10=#8ec772
+# palette = 11=#d9ba73
+# palette = 12=#7b9ef0
+# palette = 13=#f2a4db
+# palette = 14=#5abfb5
+# palette = 15=#b5bfe2
+# background = #303446
+# foreground = #c6d0f5
+# cursor-color = #f2d5cf
+# cursor-text = #c6d0f5
+# selection-background = #626880
+# selection-foreground = #c6d0f5

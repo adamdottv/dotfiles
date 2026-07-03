@@ -12,7 +12,7 @@ mason.setup({})
 lspconfig.setup({
 	ensure_installed = {
 		"tailwindcss",
-		"tsserver",
 		"astro",
+    "vtsls"
 	},
 })

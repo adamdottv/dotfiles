@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Function to delete worktree and branch
+delete_worktree() {
+  local branch="$1"
+  local worktree_path="../$branch"
+
+  # Remove the worktree
+  echo "Removing worktree: $worktree_path"
+  git worktree remove "$worktree_path" --force 2>/dev/null || {
+    echo "Warning: Could not remove worktree via git, removing directory manually"
+    rm -rf "$worktree_path"
+  }
+
+  # Delete the branch
+  echo "Deleting branch: $branch"
+  git branch -D "$branch" 2>/dev/null || echo "Warning: Could not delete branch $branch"
+
+  echo "Done!"
+}
+
+# Parse options
+delete_mode=false
+while getopts "d" opt; do
+  case $opt in
+    d) delete_mode=true ;;
+    *) echo "usage: gwt [-d] <branch> [<start-point>]" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [[ $# -lt 1 ]]; then
+  echo "usage: gwt [-d] <branch> [<start-point>]" >&2
+  exit 1
+fi
+
+branch="$1"
+
+if [[ "$delete_mode" == true ]]; then
+  # Delete mode
+  delete_worktree "$branch"
+else
+  # Create mode
+  start="${2:-HEAD}"
+  worktree_path="../$branch"
+
+  # Check if worktree already exists
+  if [[ -d "$worktree_path" ]] && git worktree list | grep -q "$(realpath "$worktree_path" 2>/dev/null || echo "$worktree_path")"; then
+    echo "Worktree already exists at $worktree_path, opening in tmux..."
+  else
+    # Check if branch already exists
+    if git show-ref --verify --quiet "refs/heads/$branch"; then
+      echo "Branch '$branch' already exists. Creating worktree without -b flag..."
+      git worktree add "$worktree_path" "$branch"
+    else
+      # Create the worktree with new branch
+      git worktree add -b "$branch" "$worktree_path" "$start"
+    fi
+  fi
+
+  # Get the absolute path of the new worktree
+  worktree_dir="$(realpath "$worktree_path")"
+
+  # Open the worktree in a new tmux session using the project script
+  project "$worktree_dir"
+fi
